@@ -1,0 +1,181 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="CatalogoWeb.Master" %>
+
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Salsa&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CompraClick</title>
+    <style>
+        .nav-item {
+            color: orangered;
+        }
+
+        .nav-link {
+            color: orangered;
+            font-family: 'Oswald';
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 300;
+            border-left-color: aqua;
+            border-color: snow;
+        }
+
+        .navbar-brand {
+            font-family: 'Salsa';
+            font-size: 60px;
+        }
+
+        .text-light {
+            color: orangered;
+            font-family: fantasy;
+            font-size: 25px;
+            margin-right: 10px;
+        }
+
+        .dropdown-content {
+            align-items: center;
+            justify-content: initial;
+            display: flex-wrap;
+            position: absolute;
+            top: 85%; /* Muestra el dropdown debajo del avatar */
+            right: 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            background-color: #f9f6fe;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        #form1 {
+            width:100%;
+            height:100%;
+            background-color: #f9f6fe;
+        }
+
+        .div-footer {
+            background-color: #9761eb;
+            display:flex;
+            justify-content:center;
+            margin-top:20px;
+            font-size: 18px;
+            position:absolute;
+            width:100%;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var avatar = document.getElementById('<%= imgAvatar.ClientID %>');
+            var dropdown = document.getElementById('dropdown');
+
+            avatar.addEventListener('mouseover', function () {
+                dropdown.style.display = 'block';
+            });
+
+            avatar.addEventListener('mouseout', function () {
+                dropdown.style.display = 'none';
+            });
+
+            dropdown.addEventListener('mouseover', function () {
+                dropdown.style.display = 'block';
+            });
+
+            dropdown.addEventListener('mouseout', function () {
+                dropdown.style.display = 'none';
+            });
+        });
+    </script>
+
+
+    <%-- CSS only --%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg" style="background-color: #9761eb">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Default.aspx">
+                    <img src="\Image\Icon\catalogar.png" alt="Logo" width="35" height="35" class="d-inline-block align-text-top">
+                    CompraClick 
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" style="font-size: 30px" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Default.aspx">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ListaArticulo.aspx">Catalogo</a>
+                        </li>
+                        <%if (Negocio.Seguridad.SesionActiva(Session["UsuarioActivo"]))
+                            { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Favoritos.aspx">Favoritos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="MiPerfil.aspx">Mi Perfil </a>
+                        </li>
+                        <%}
+                        %>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="false"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex" style="display: flex; align-items: center; justify-content: space-between;">
+                    <%if (!Negocio.Seguridad.SesionActiva(Session["UsuarioActivo"]))
+                        { %>
+                    <asp:ImageButton ID="btnLogin" Style="height: 40px; margin-right: 5px;" Text="Login" ImageUrl="https://cdn-icons-png.flaticon.com/256/152/152532.png" CssClass="btn btn-sm btn-success" OnClick="btnLogin_Click" runat="server" />
+                    <asp:ImageButton ID="btnRegistro" Style="height: 40px" Text="Registro" ImageUrl="https://w7.pngwing.com/pngs/112/858/png-transparent-computer-icons-icon-design-user-register-button-heroes-rectangle-logo.png" CssClass="btn btn-sm btn-warning" OnClick="btnRegistro_Click" runat="server" />
+                    <%}
+                        else
+                        {%>
+                    <asp:Label ID="lblUser" Text="user" CssClass="text-light" runat="server" />
+                    <asp:ImageButton ID="btnSalir" Style="height: 40px; margin-right: 5px;" ImageUrl="https://cdn-icons-png.flaticon.com/512/4400/4400629.png" Text="Salir" CssClass="btn btn-sm btn-outline-danger" runat="server" OnClick="btnSalir_Click" />
+                    <%}
+                    %>
+                    <asp:Image ID="imgAvatar" Style="padding: 2px; height: 60px; width: 60px; border-radius: 50%; margin-left: 5px; margin-left: 10px;" runat="server" />
+                    <!-- Contenido del dropdown -->
+                    <%if (Negocio.Seguridad.SesionActiva(Session["UsuarioActivo"]))
+                        { %>
+                    <div id="dropdown" class="dropdown-content">
+                        <ul style="color: darkblue;">
+                            <li style="list-style: none;">
+                                <asp:LinkButton ID="MiPerfil" runat="server" Text="MiPerfil" OnClick="MiPerfil_Click" />
+
+                            </li>
+                            <li style="list-style: none;">
+                                <asp:LinkButton ID="Salir" runat="server" Text="Salir" OnClick="btnSalir_Click" />
+                            </li>
+                        </ul>
+                    </div>
+                    <%} %>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+            <div class="div-footer">
+    <footer>
+        <p>© 2024 CompraClick All Rights Reserved.</p>
+    </footer>
+    </div>
+    </form>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

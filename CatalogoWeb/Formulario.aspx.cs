@@ -142,17 +142,20 @@ namespace CatalogoWeb
 
         protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
         {
-            try
+            if (chkConfirmaEliminacion.Checked)
             {
-                ArticuloNegocio Negocio = new ArticuloNegocio();
-                Negocio.Eliminar(int.Parse(TxtID.Text));
-                Response.Redirect("ListaArticulo.aspx", false);
-            }
-            catch (Exception ex)
-            {
-                Session.Add("Error", "Hubo un Error a Eliminar " +  ex);
-                Response.Redirect("Error.aspx", false);
+                try
+                {
+                    ArticuloNegocio Negocio = new ArticuloNegocio();
+                    Negocio.Eliminar(int.Parse(TxtID.Text));
+                    Response.Redirect("ListaArticulo.aspx", false);
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("Error", "Hubo un Error a Eliminar " + ex);
+                    Response.Redirect("Error.aspx", false);
 
+                }
             }
         }
     }

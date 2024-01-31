@@ -15,13 +15,7 @@ namespace CatalogoWeb
 
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Seguridad.EsAdmin(Session["UsuarioActivo"]))
-            {
-                dgvArticulos.Columns[5].Visible = false;
-            }
-
-            
+        {          
             FiltroAvanzado = ChkAvanzado.Checked;
             if (!IsPostBack)
             {
@@ -41,11 +35,6 @@ namespace CatalogoWeb
             }
         }
 
-        protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string id = dgvArticulos.SelectedDataKey.Value.ToString();
-            Response.Redirect("Formulario.aspx?id=" + id, false);
-        }
 
         // Vista : 5 Art x Page
         protected void dgvArticulos_PageIndexChanging(object sender, GridViewPageEventArgs e)

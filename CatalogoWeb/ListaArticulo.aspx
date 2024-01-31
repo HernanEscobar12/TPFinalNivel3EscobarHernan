@@ -64,13 +64,13 @@
                 </div>
             </div>
         </div>
-        <%}%>
+        <%}
+%>
     </div>
 
 
 
     <asp:GridView ID="dgvArticulos" AllowPaging="true" AutoGenerateColumns="false" runat="server" DataKeyNames="Id" CssClass="table active blockquote text-light-emphasis text-bg-info"
-        OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"
         OnPageIndexChanging="dgvArticulos_PageIndexChanging" PageSize="5">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
@@ -78,19 +78,12 @@
             <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
             <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
             <asp:BoundField HeaderText="Precio" DataField="Precio" DataFormatString="{0:F2}" />
-            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍" />
         </Columns>
     </asp:GridView>
 
 
     <div class="row">
         <div class="col-3">
-            <%if (Negocio.Seguridad.SesionActiva(Session["UsuarioACtivo"]))
-
-                { %>
-            <asp:Button ID="btnNuevo" Text="Nuevo" OnClick="btnNuevo_Click" CssClass="btn btn-outline-success btn-xg" runat="server" />
-
-            <% }%>
         </div>
         <div class="col-8" style="display: flex; justify-content: flex-end">
             <asp:Button ID="btnSalir" Text="Salir" OnClick="btnSalir_Click" CssClass="btn btn-outline-danger btn-xg" runat="server" />

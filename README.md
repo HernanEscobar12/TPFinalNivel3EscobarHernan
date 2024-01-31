@@ -12,13 +12,13 @@
 
 
 <hr>
-<h3>Perfil Admin </h3>
+<h4>Perfil Admin </h3>
 Email: admin@admin.com  <br>
 Contraseña: admin <br>
 
 
 <hr>
-<h5>Usuario Normal</h5>
+<h4>Usuario Normal</h5>
 Email: user@user.com <br>
 Contraseña: user <br>
 <hr>
@@ -36,7 +36,7 @@ Contraseña: user <br>
 <h3>Resumen de funcionalidades:</h3>
 <br>
 
- <h5>Perfil Normal: </h5>
+ <h4>Perfil Normal: </h5>
 <ul>
  <li>Listado de artículos (Grid).</li>
  <li>Filtro de artículos por distintos criterios.</li>
@@ -45,7 +45,7 @@ Contraseña: user <br>
  <li>Actualizar Perfil</li>
  </ul>
 
- <h5>Perfil Admin: </h5>
+ <h4>Perfil Admin: </h5>
  <ul> 
  <li>Agregar artículos.</li>
  <li>Modificar artículos.</li>

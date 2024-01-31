@@ -12,15 +12,17 @@ aplicación web destinada a un comercio con catálogo de  productos de cara a lo
  Portal estilo eccommerce con un login que permite el accesso a un área de administración de productos. Esto permitirá que quien administre la aplicación pueda realizar modificaciones en los productos publicados. 
  esta pantalla solo  tiene acceso la persona "Admin " que cuenta  con un usuario y contraseña habilitada.
 
--------------------------------------------------------------------------------------------------------------------
-Admin:
-Email: admin@admin.com  
-Contraseña: admin
--------------------------------------------------------------------------------------------------------------------
-Usuario Final:
-Email: user@user.com
-Contraseña: user
--------------------------------------------------------------------------------------------------------------------
+
+<hr>
+<h5<Admin: </h5>    
+Email: admin@admin.com  <br>
+Contraseña: admin <br>
+
+<hr>
+<h5>Usuario Normal</h5>
+Email: user@user.com <br>
+Contraseña: user <br>
+ <hr>
 
 Pantallas
 

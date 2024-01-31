@@ -4,7 +4,7 @@
 
 proyecto utilizando C# como lenguaje base, con el Framework ASP.NET y webforms, conectado a una base de datos relacional utilizando ADO.NET con SQL Server.
 
- desarrollar una aplicación web destinada a un comercio o emprendimiento que quiera mostrar su catálogo de       productos de cara a los potenciales clientes. La idea es contar con un portal al que se pueda acceder y navegar los productos ofrecidos, contando con distintos tipos de visualización como tarjetas, o listados, pantallas de detalles del producto, con un diseño ameno y pensado en la experiencia de usuario. Además el portal puede contar con filtros por descripción, marca, categoría, para mejorar la navegación dentro del sitio. 
+aplicación web destinada a un comercio con catálogo de  productos de cara a los potenciales clientes. es un portal al que se pueda acceder y navegar los productos ofrecidos, contando con distintos tipos de visualización como pantallas de detalles del producto, con un diseño ameno y pensado en la experiencia de usuario. Además el portal cuenta con filtros por descripción, marca, categoría, para mejorar la navegación dentro del sitio. 
 
 
 

@@ -112,7 +112,42 @@ namespace Negocio
 
         }
 
+        public List<User> ListaUsuario()
+        {
+            List<User> ListaUser = new List<User>();
+            AccesoDatos Datos = new AccesoDatos();
 
+            try
+            {
+                Datos.SetConsulta("select Id, email, pass, nombre, apellido, urlImagenPerfil, admin from USERS");
+                Datos.EjecutarLectura();
+                while (Datos.Reader.Read())
+                {
+
+                    User user = new User();
+                    user.Id = (int)Datos.Reader["id"];
+                    user.Admin = (bool)Datos.Reader["admin"];
+                    user.Email = (string)Datos.Reader["email"];
+                    if (!(Datos.Reader["nombre"] is DBNull))
+                        user.Nombre = (string)Datos.Reader["nombre"];
+                    if (!(Datos.Reader["apellido"] is DBNull))
+                        user.Apellido = (string)Datos.Reader["apellido"];
+                    if (!(Datos.Reader["urlImagenPerfil"] is DBNull))
+                        user.ImagePerfil = (string)Datos.Reader["urlImagenPerfil"];
+                    ListaUser.Add(user);
+                }
+                return ListaUser;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
         public List<User> BuscarUser(string id)
         {
             AccesoDatos Datos = new AccesoDatos();

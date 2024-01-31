@@ -19,63 +19,72 @@ namespace CatalogoWeb
         {
             TxtID.Enabled = false;
             ConfirmaEliminacion=false;
-            
 
-            try
+            if (!Seguridad.EsAdmin(Session["UsuarioActivo"]))
             {
-                if(!IsPostBack)
+                Session.Add("Error", "Acceso Denegado. DEBES SER ADMIN");
+                Response.Redirect("Error.aspx", false);
+            }
+            else
+            {
+                try
                 {
-
-                    EsNew = true;
-                    CategoriaNegocio CatNegocio = new CategoriaNegocio();
-                    MarcaNegocio MarcaNegocio = new MarcaNegocio();
-
-                    ddlCategoria.DataSource = CatNegocio.Listar();
-                    ddlCategoria.DataValueField = "Id";
-                    ddlCategoria.DataTextField = "Descripcion";
-                    ddlCategoria.DataBind();
-
-                    ddlMarca.DataSource = MarcaNegocio.Listar();
-                    ddlMarca.DataValueField = "Id";
-                    ddlMarca.DataTextField = "Descripcion";
-                    ddlMarca.DataBind();
-
-
-
-                    // Configuracion si es Modificacicón
-                    string id = Request.QueryString["id"] != null ? Request.QueryString["Id"].ToString() : "";
-                    if(id != "" && !IsPostBack)
+                    if (!IsPostBack)
                     {
-                        EsNew = false;
 
-                        ArticuloNegocio Negocio = new ArticuloNegocio();
-                        Articulo Seleccionado = (Negocio.Listar(id))[0];
+                        EsNew = true;
+                        CategoriaNegocio CatNegocio = new CategoriaNegocio();
+                        MarcaNegocio MarcaNegocio = new MarcaNegocio();
 
-                        // Se Guarda En Session
-                        Session.Add("ArtSeleccionado", Seleccionado);
+                        ddlCategoria.DataSource = CatNegocio.Listar();
+                        ddlCategoria.DataValueField = "Id";
+                        ddlCategoria.DataTextField = "Descripcion";
+                        ddlCategoria.DataBind();
 
-                        // Precarga De Datos
+                        ddlMarca.DataSource = MarcaNegocio.Listar();
+                        ddlMarca.DataValueField = "Id";
+                        ddlMarca.DataTextField = "Descripcion";
+                        ddlMarca.DataBind();
 
-                        TxtID.Text= Seleccionado.Id.ToString();
-                        txtCodigo.Text = Seleccionado.Codigo;
-                        txtImagenUrl.Text = Seleccionado.ImageUrl;
-                        txtPrecio.Text = Convert.ToDouble(Seleccionado.Precio).ToString();
-                        txtNombre.Text = Seleccionado.Nombre;
-                        txtDescripcion.Text = Seleccionado.Descripcion;
-                        ddlCategoria.SelectedValue = Seleccionado.Categoria.Id.ToString();
-                        ddlMarca.SelectedValue = Seleccionado.Marca.Id.ToString();
-                        txtImagenUrl_TextChanged(sender, e);
-                        
+
+
+                        // Configuracion si es Modificacicón
+                        string id = Request.QueryString["id"] != null ? Request.QueryString["Id"].ToString() : "";
+                        if (id != "" && !IsPostBack)
+                        {
+                            EsNew = false;
+
+                            ArticuloNegocio Negocio = new ArticuloNegocio();
+                            Articulo Seleccionado = (Negocio.Listar(id))[0];
+
+                            // Se Guarda En Session
+                            Session.Add("ArtSeleccionado", Seleccionado);
+
+                            // Precarga De Datos
+
+                            TxtID.Text = Seleccionado.Id.ToString();
+                            txtCodigo.Text = Seleccionado.Codigo;
+                            txtImagenUrl.Text = Seleccionado.ImageUrl;
+                            txtPrecio.Text = Convert.ToDouble(Seleccionado.Precio).ToString();
+                            txtNombre.Text = Seleccionado.Nombre;
+                            txtDescripcion.Text = Seleccionado.Descripcion;
+                            ddlCategoria.SelectedValue = Seleccionado.Categoria.Id.ToString();
+                            ddlMarca.SelectedValue = Seleccionado.Marca.Id.ToString();
+                            txtImagenUrl_TextChanged(sender, e);
+
+                        }
+
                     }
 
                 }
+                catch (Exception ex)
+                {
+                    Session.Add("Error", "Hubo un Error" + ex);
+                    Response.Redirect("Error.aspx", false);
+                }
+            }
 
-            }
-            catch (Exception ex)
-            {
-                Session.Add("Error", "Hubo un Error" + ex);
-                Response.Redirect("Error.aspx", false);
-            }
+           
         }
 
         protected void txtImagenUrl_TextChanged(object sender, EventArgs e)

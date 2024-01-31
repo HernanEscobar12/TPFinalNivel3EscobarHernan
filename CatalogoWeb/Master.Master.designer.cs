@@ -78,13 +78,13 @@ namespace CatalogoWeb
         protected global::System.Web.UI.WebControls.Image imgAvatar;
 
         /// <summary>
-        /// Control MiPerfil.
+        /// Control PanelDeControl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton MiPerfil;
+        protected global::System.Web.UI.WebControls.LinkButton PanelDeControl;
 
         /// <summary>
         /// Control Salir.

@@ -150,7 +150,7 @@
                     <div id="dropdown" class="dropdown-content">
                         <ul style="color: darkblue;">
                             <li style="list-style: none;">
-                                <asp:LinkButton ID="MiPerfil" runat="server" Text="MiPerfil" OnClick="MiPerfil_Click" />
+                                <asp:LinkButton ID="PanelDeControl" runat="server" Text="Panel De Control" OnClick="PanelDeControl_Click" />
 
                             </li>
                             <li style="list-style: none;">

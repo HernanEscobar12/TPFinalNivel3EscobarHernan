@@ -56,9 +56,9 @@ namespace CatalogoWeb
             Response.Redirect("Registro.aspx", false);
         }
 
-        protected void MiPerfil_Click(object sender, EventArgs e)
+        protected void PanelDeControl_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MiPerfil.aspx", false);
+            Response.Redirect("Administrador.aspx", false);
         }
     }
 }
